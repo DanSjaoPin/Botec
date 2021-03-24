@@ -12,8 +12,11 @@ cockBD = base.cursor();
 cockBD.execute(f"CREATE TABLE IF NOT EXISTS cock(user_id text PRIMARY KEY, DolbaebName text, DolbaebLastName text, chat_id text, length int, last_commit_date text)")
 
 base.commit()
+base.close()
 
 def CockUpdate(id, DolbaebLastName, DolbaebName, chat_id, plus):	
+	base = sqlite3.connect('CocksBase.bd')
+	cockBD = base.cursor();
 	cockBD.execute(f"SELECT length FROM cock WHERE user_id = '%s'" % (id))
 	check = cockBD.fetchone()
 	if check == None:
@@ -30,3 +33,4 @@ def CockUpdate(id, DolbaebLastName, DolbaebName, chat_id, plus):
 
 	cockBD.execute("UPDATE cock SET last_commit_date = '%s', chat_id = %s WHERE user_id = '%s'" % (date.today(), chat_id, id))
 	base.commit()
+	base.close()

@@ -25,8 +25,8 @@ for event in longpoll.listen():
 					for simbol in msg:
 						if simbol == ',' or simbol == '.' or simbol == '!' or simbol == '?':
 							newmsg = msg.replace(simbol, '')
-							msg = newmsg
-						
+							msg = newmsg			
+							
 				if dolbaeb['id'] == 162958234:
 					sender(id, 'Броооооо 🖤')	
 					
@@ -47,6 +47,9 @@ for event in longpoll.listen():
 				elif msg == 'кок':
 					sender(id, 'кок')
 				
+				elif msg == 'бiбр' or msg == 'бібр' or msg == 'бибр' or msg == 'бобр'')':
+					sender(id, 'Бiбр.')
+					
 				elif msg == 'ы':
 					sender(id, 'Гы))0)')
 					
@@ -67,5 +70,11 @@ for event in longpoll.listen():
 					
 				elif msg == 'бот топ коков':
 					CocksTop(id, dolbaeb['id'])
-	except:
-		print("\n--------------------------------------------------------Кракнувса-------------------------------------------------------\n")
+					
+				elif dolbaeb['id'] == 182821666 and msg == 'бот призываю тебя заебать всех нахуй':
+					i = 0
+					while i <= 100:	
+						sender(id, '@all')
+						i += 1
+	except ValueError as e:
+		print("\n--------------------------------------------------------Кракнувса-------------------------------------------------------\n" + e)
