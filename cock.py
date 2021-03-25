@@ -27,21 +27,21 @@ def CockChange(dolbaebID, dolbaebF, dolbaebN, id):
 			newd = str(lastCommitDate).replace(simbol, '')
 			lastCommitDate = str(newd)
 	if lastCommitDate == str(date.today()):
-		sender(id, '*id%d(%s %s) на сегодня хватит кока, залетай завтра - повторим' % (dolbaebID, dolbaebF, dolbaebN))
+		sender(id, '*id%d(%s %s), на сегодня хватит кока, залетай завтра - повторим' % (dolbaebID, dolbaebF, dolbaebN))
 		
 	else:
 		plus = 0
 		chance = random.randrange(100)
 
-		if chance > 0 and chance < 50:
+		if chance > 0 and chance < 40:
 			plus = random.randrange(10)
 			sender(id, 'Кок *id%d(%s %s) вырос на %d см!' % (dolbaebID, dolbaebF, dolbaebN, plus))
 			
-		elif chance > 50 and chance < 85:
+		elif chance > 40 and chance < 70:
 			plus = random.randrange(10, 15)
 			sender(id, 'Кок *id%d(%s %s) вырос на %d см!' % (dolbaebID, dolbaebF, dolbaebN, plus))
 			
-		elif chance > 85 and chance < 90:
+		elif chance > 70 and chance < 90:
 			plus = random.randrange(15, 20)
 			sender(id, 'Кок *id%d(%s %s) вырос на %d см!' % (dolbaebID, dolbaebF, dolbaebN, plus))
 
