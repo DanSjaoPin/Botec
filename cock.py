@@ -41,22 +41,21 @@ def CockChange(dolbaebID, dolbaebF, dolbaebN, id):
 			plus = random.randrange(10, 15)
 			sender(id, 'Кок *id%d(%s %s) вырос на %d см!' % (dolbaebID, dolbaebF, dolbaebN, plus))
 
-		elif chance > 70 and chance <= 90:
+		elif chance > 70 and chance <= 78:
 			plus = random.randrange(15, 20)
 			sender(id, 'Кок *id%d(%s %s) вырос на %d см!' % (dolbaebID, dolbaebF, dolbaebN, plus))
 
-		elif chance > 90 and chance <= 99:
-			plus = random.randrange(-15, 0)
+		elif chance > 78 and chance <= 97:
+			plus = random.randrange(-25, 0)
 			sender(id, 'Кок *id%d(%s %s) объевреился на %d см!\nСаси' % (dolbaebID, dolbaebF, dolbaebN, plus))
 
+		elif chance > 97 and chance <= 99:
+			sender(id, 'Кок *id%d(%s %s) вырос в 2 раза!' % (dolbaebID, dolbaebF, dolbaebN))
+			plus = 666
+
 		elif chance == 100:
-			plus = random.randrange(3)
-			if plus == 1 or plus == 3:
-				sender(id, 'Кок *id%d(%s %s) вырос в 2 раза!' % (dolbaebID, dolbaebF, dolbaebN))
-				plus = 666
-			elif plus == 2:
-				sender(id, 'Кок *id%d(%s %s) отвалился!\nЛох))0)' % (dolbaebID, dolbaebF, dolbaebN))
-				plus = 1488
+			sender(id, 'Кок *id%d(%s %s) отвалился!\nЛох))0)' % (dolbaebID, dolbaebF, dolbaebN))
+			plus = 1488
 
 		CockUpdate(dolbaebID, dolbaebN, dolbaebF, id, plus)
 
