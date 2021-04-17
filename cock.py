@@ -31,7 +31,7 @@ def CockChange(dolbaebID, dolbaebF, dolbaebN, id):
 
 	else:
 		plus = 0
-		chance = random.randrange(1, 100)
+		chance = random.randrange(1, 101)
 
 		if chance > 0 and chance <= 40:
 			plus = random.randrange(10)
