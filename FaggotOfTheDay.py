@@ -1,0 +1,77 @@
+import sqlite3
+from datetime import date
+from format import format
+
+from sender import sender
+
+def FagsCreate():
+    try:
+        base = sqlite3.connect('CocksBase.bd')
+        print('Connected to DataBase of Faggots')
+    except:
+        print('Failed connect to DataBase of Faggots')
+
+    cockBD = base.cursor()
+
+    cockBD.execute("CREATE TABLE IF NOT EXISTS faggot(user_id text PRIMARY KEY, DolbaebName text, DolbaebLastName text, chat_id text, date text)")
+
+    base.commit()
+    base.close()
+
+
+def WhoIsFaggot(chat_id, degenerat_id):
+    base = sqlite3.connect('CocksBase.bd')
+    cockBD = base.cursor()
+    cockBD.execute("UPDATE cock SET chat_id = %s WHERE user_id = '%s'" % (chat_id, degenerat_id))
+    cockBD.execute("SELECT user_id FROM faggot WHERE chat_id = '%s'" % (chat_id))
+    check = cockBD.fetchone()
+    if check == None:
+        row = ("id", "DolbaebName", "DolbaebLastName", chat_id, "date")
+        cockBD.execute("INSERT INTO faggot VALUES(?, ?, ?, ?, ?)", row)
+        base.commit()
+
+    cockBD.execute("SELECT date FROM faggot WHERE chat_id = '%s'" % (chat_id))
+    lastCommitDate = cockBD.fetchone()
+    
+    lastCommitDate = format(lastCommitDate)
+
+    if lastCommitDate == str(date.today()):
+        cockBD.execute("SELECT user_id FROM faggot WHERE chat_id = '%s'" % (chat_id))
+        ID = cockBD.fetchall()
+        
+        ID = format(ID)
+
+        cockBD.execute("SELECT DolbaebName FROM faggot WHERE chat_id = '%s'" % (chat_id))
+        N = cockBD.fetchall()
+
+        N = format(N)
+
+        cockBD.execute("SELECT DolbaebLastName FROM faggot WHERE chat_id = '%s'" % (chat_id))
+        LN = cockBD.fetchall()
+
+        LN = format(LN)
+
+        CT = "Пидор дня: *id%s(%s %s)" % (ID, LN, N)
+        sender(chat_id, CT)
+
+    else:
+        cockBD.execute("SELECT user_id FROM cock WHERE chat_id = '%s' ORDER BY RANDOM() LIMIT 1" % (chat_id))
+        ID = cockBD.fetchall()
+        
+        ID = format(ID)
+
+        cockBD.execute("SELECT DolbaebName FROM cock WHERE user_id = '%s'" % (ID))
+        N = cockBD.fetchall()
+        
+        N = format(N)
+
+        cockBD.execute("SELECT DolbaebLastName FROM cock WHERE user_id = '%s'" % (ID))
+        LN = cockBD.fetchall()
+        
+        LN = format(LN)
+
+        cockBD.execute("UPDATE faggot SET user_id = '%s', DolbaebName = '%s', DolbaebLastName = '%s', date = '%s' WHERE chat_id = '%s'" % (ID, N, LN, date.today(), chat_id))
+        base.commit()
+        base.close()
+        WhoIsFaggot(chat_id, degenerat_id)
+
