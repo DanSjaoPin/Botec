@@ -51,7 +51,7 @@ def WhoIsFaggot(chat_id, degenerat_id):
 
         LN = format(LN)
 
-        CT = "Пидор дня: *id%s(%s %s)" % (ID, LN, N)
+        CT = "Пидор дня: %s %s" % (LN, N)
         sender(chat_id, CT)
 
     else:
