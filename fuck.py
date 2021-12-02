@@ -1,29 +1,16 @@
-import sqlite3
 from sender import sender
-from format import format
+from randomUser import randomUser
+import random
 
 
 def fuck(chat_id, degenerat_id, name, sname):
-    base = sqlite3.connect('CocksBase.bd')
     
-    cockBD = base.cursor()
-    cockBD.execute("UPDATE cock SET chat_id = %s WHERE user_id = '%s'" % (chat_id, degenerat_id))
-    cockBD.execute("SELECT user_id FROM faggot WHERE chat_id = '%s'" % (chat_id))
+    random_user = randomUser(chat_id)
 
-    cockBD.execute("SELECT user_id FROM cock WHERE chat_id = '%s' ORDER BY RANDOM() LIMIT 1" % (chat_id))
-    ID = cockBD.fetchall()
-    ID = format(ID)
-
-    cockBD.execute("SELECT DolbaebName FROM cock WHERE user_id = '%s'" % (ID))
-    N = cockBD.fetchall()
-    N = format(N)
-
-    cockBD.execute("SELECT DolbaebLastName FROM cock WHERE user_id = '%s'" % (ID))
-    LN = cockBD.fetchall()
-    LN = format(LN)
-
-    base.close()
-
+    ID = random_user[0]
+    LN = random_user[1]
+    N = random_user[2]
+    
     CT = "%s %s трахнул *id%s(%s %s)" % (name, sname, ID, LN, N)
 
     if str(ID) == str(degenerat_id):

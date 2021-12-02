@@ -3,6 +3,7 @@ from datetime import date
 from format import format
 
 from sender import sender
+from randomUser import randomUser
 
 def FagsCreate():
     try:
@@ -55,23 +56,15 @@ def WhoIsFaggot(chat_id, degenerat_id):
         sender(chat_id, CT)
 
     else:
-        cockBD.execute("SELECT user_id FROM cock WHERE chat_id = '%s' ORDER BY RANDOM() LIMIT 1" % (chat_id))
-        ID = cockBD.fetchall()
-        
-        ID = format(ID)
+        random_user = randomUser(chat_id)
 
-        cockBD.execute("SELECT DolbaebName FROM cock WHERE user_id = '%s'" % (ID))
-        N = cockBD.fetchall()
-        
-        N = format(N)
-
-        cockBD.execute("SELECT DolbaebLastName FROM cock WHERE user_id = '%s'" % (ID))
-        LN = cockBD.fetchall()
-        
-        LN = format(LN)
+        ID = random_user[0]
+        LN = random_user[1]
+        N = random_user[2]
 
         cockBD.execute("UPDATE faggot SET user_id = '%s', DolbaebName = '%s', DolbaebLastName = '%s', date = '%s' WHERE chat_id = '%s'" % (ID, N, LN, date.today(), chat_id))
         base.commit()
         base.close()
+        
         WhoIsFaggot(chat_id, degenerat_id)
 
