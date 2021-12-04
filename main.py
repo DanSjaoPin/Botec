@@ -34,7 +34,11 @@ while True:
 							msg = formatInput(msg)
 
 							if msg == 'бот':
-								sender(id, 'Иди нахуй, *id%d(%s %s)' % (dolbaeb['id'], dolbaeb['first_name'], dolbaeb['last_name']))
+							    if dolbaeb['id'] == 182821666:
+								    sender(id, 'Здорова, Батя!))0)')
+							    else:
+							        sender(id, 'Иди нахуй, %s %s' %
+							               (dolbaeb['first_name'], dolbaeb['last_name']))
 
 							elif msg == 'бот меню':
 								sender(id, menu)
