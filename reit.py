@@ -5,7 +5,6 @@ from format import format
 def Reit(IDs, vkid):
     try:
     	base = sqlite3.connect('CocksBase.bd')
-    	print('Connected to DataBase')
     except:
 	    print('Failed connect to DataBase')
     cockBD = base.cursor()
