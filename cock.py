@@ -2,7 +2,7 @@ import sqlite3
 from datetime import date
 import random
 from CocksBase import CockUpdate
-from sender import sender
+from sender import sender, vk
 from format import format
 
 base = sqlite3.connect('CocksBase.bd')
@@ -65,13 +65,24 @@ def CocksTop(chat_id, id):
 	cockBD.execute("UPDATE cock SET chat_id = %s WHERE user_id = '%s'" % (chat_id, id))
 	base.commit()
 
-	cockBD.execute("SELECT DolbaebName FROM cock WHERE chat_id = '%s' ORDER BY length DESC" % (chat_id))
+	users = vk.messages.getConversationMembers(peer_id=2000000000 + chat_id)
+	user = users['profiles']
+
+	idList = '('
+	for usr in user:
+		idList = idList + str(format(usr['id'])) + ','
+	idList = idList[:-1] + ')'
+
+	cockBD.execute(
+		"SELECT DolbaebName FROM cock WHERE user_id in %s ORDER BY length DESC" % (idList))
 	N = cockBD.fetchall()
 
-	cockBD.execute("SELECT DolbaebLastName FROM cock WHERE chat_id = '%s' ORDER BY length DESC" % (chat_id))
+	cockBD.execute(
+		"SELECT DolbaebLastName FROM cock WHERE user_id in %s ORDER BY length DESC" % (idList))
 	LN = cockBD.fetchall()
 
-	cockBD.execute("SELECT length FROM cock WHERE chat_id = '%s' ORDER BY length DESC" % (chat_id))
+	cockBD.execute(
+		"SELECT length FROM cock WHERE user_id in %s ORDER BY length DESC" % (idList))
 	L = cockBD.fetchall()
 
 	i = 0
@@ -82,7 +93,7 @@ def CocksTop(chat_id, id):
 		LNN = format(LN[i])
 		LL = format(L[i])
 
-		CT += "%s. %s %s —  %s см\n" % (i + 1, NN, LNN, LL)
 		i += 1
+		CT += "%s. %s %s —  %s см\n" % (i, NN, LNN, LL)		
 		
 	sender(chat_id, CT)
