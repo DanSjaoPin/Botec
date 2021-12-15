@@ -16,7 +16,7 @@ def FagsCreate():
     cockBD = base.cursor()
 
     cockBD.execute(
-        "CREATE TABLE IF NOT EXISTS faggot(user_id text, DolbaebName text, DolbaebLastName text, chat_id text, date text)")
+        "CREATE TABLE IF NOT EXISTS faggot(user_id text, DolbaebName text, DolbaebLastName text, chat_id int, date text)")
 
     cockBD.execute("CREATE TABLE IF NOT EXISTS faggot(user_id text PRIMARY KEY, DolbaebName text, DolbaebLastName text, chat_id text, date text)")
 
