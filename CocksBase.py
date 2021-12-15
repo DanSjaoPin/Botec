@@ -9,7 +9,7 @@ except:
 
 cockBD = base.cursor()
 
-cockBD.execute(f"CREATE TABLE IF NOT EXISTS cock(user_id text PRIMARY KEY, DolbaebName text, DolbaebLastName text, chat_id text, length int, last_commit_date text)")
+cockBD.execute(f"CREATE TABLE IF NOT EXISTS cock(user_id text PRIMARY KEY, DolbaebName text, DolbaebLastName text, chat_id int, length int, last_commit_date text)")
 
 base.commit()
 base.close()
