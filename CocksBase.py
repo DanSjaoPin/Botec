@@ -9,7 +9,7 @@ except:
 
 cockBD = base.cursor()
 
-cockBD.execute(f"CREATE TABLE IF NOT EXISTS cock(user_id text PRIMARY KEY, DolbaebName text, DolbaebLastName text, chat_id text, length int, last_commit_date text)")
+cockBD.execute(f"CREATE TABLE IF NOT EXISTS cock(user_id text PRIMARY KEY, DolbaebName text, DolbaebLastName text, chat_id int, length int, last_commit_date text)")
 
 base.commit()
 base.close()
@@ -19,7 +19,7 @@ def CockUpdate(id, DolbaebLastName, DolbaebName, chat_id, plus):
 	cockBD = base.cursor()
 	cockBD.execute(f"SELECT length FROM cock WHERE user_id = '%s'" % (id))
 	check = cockBD.fetchone()
-	
+
 	if check == None:
 		row = (id, DolbaebName, DolbaebLastName, chat_id, 0, date.today())
 		cockBD.execute("INSERT INTO cock VALUES(?, ?, ?, ?, ?, ?)", row)
