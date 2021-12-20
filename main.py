@@ -10,6 +10,7 @@ import random
 from reit import Reit
 from menu import menu
 from fuck import fuck
+from say import say
 
 while True:
 	try:
@@ -101,6 +102,9 @@ while True:
 
 							elif msg == 'бот хочу ебаться':
 								fuck(id, dolbaeb['id'], dolbaeb['first_name'], dolbaeb['last_name'])
+
+							elif msg[:9] == 'бот скажи':
+								say(id, msg[9:])
 
 							elif dolbaeb['id'] == 182821666 and msg == 'бот призываю тебя заебать всех нахуй':
 								sender(id, 'Пагнали наши городские!')
