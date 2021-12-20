@@ -11,7 +11,7 @@ cockBD = base.cursor()
 def CockChange(dolbaebID, dolbaebF, dolbaebN, id):
 	cockBD.execute(f"SELECT last_commit_date FROM cock WHERE user_id = '%s'" % (dolbaebID))
 	lastCommitDate = cockBD.fetchone()
-	
+
 	lastCommitDate = format(lastCommitDate)
 
 	if lastCommitDate == str(date.today()):
@@ -20,6 +20,12 @@ def CockChange(dolbaebID, dolbaebF, dolbaebN, id):
 	else:
 		plus = 0
 		chance = random.randrange(1, 101)
+
+		cockBD.execute("SELECT IronCock FROM cock WHERE user_id = '%s'" % (dolbaebID))
+
+		if cockBD.fetchone() == str(1):
+			while chance > 78 or chance != 98 or chance != 99:
+				chance = random.randrange(1, 101)
 
 		if chance > 0 and chance <= 40:
 			plus = random.randrange(10)
@@ -94,6 +100,6 @@ def CocksTop(chat_id, id):
 		LL = format(L[i])
 
 		i += 1
-		CT += "%s. %s %s —  %s см\n" % (i, NN, LNN, LL)		
-		
+		CT += "%s. %s %s —  %s см\n" % (i, NN, LNN, LL)
+
 	sender(chat_id, CT)
