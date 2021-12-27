@@ -23,6 +23,17 @@ while True:
 					logMessage = "\n\n---\nFrom User: 'id%s'   From Chat: '%s'   Date'N'Time: '%s'\n '%s'\n---" % (event.message.from_id, event.chat_id ,dateNtime, event.message.text)
 					print(logMessage)
 
+					logsFile = open("logs.txt", "a")
+					logsFile.write(logMessage)
+					logsFile.close()
+
+					action = event.obj['message'].get('action')
+
+					if action['type'] == 'chat_kick_user':
+						sender(event.chat_id, 'Минус додик!')
+					elif action['type'] == 'chat_invite_user':
+						sender(event.chat_id, 'Здорова, ебать! Пиши бот меню, или сразу бот кок. Че мелочиться?')
+
 					if event.message.peer_id != event.message.from_id:
 						msg = event.message.text.lower()
 						id = event.chat_id
@@ -38,8 +49,7 @@ while True:
 							    if dolbaeb['id'] == 182821666:
 								    sender(id, 'Здорова, Батя!))0)')
 							    else:
-							        sender(id, 'Иди нахуй, %s %s' %
-							               (dolbaeb['first_name'], dolbaeb['last_name']))
+							        sender(id, 'Иди нахуй, %s %s' % (dolbaeb['first_name'], dolbaeb['last_name']))
 
 							elif msg == 'бот меню':
 								sender(id, menu)
@@ -147,7 +157,6 @@ while True:
                                                 _________¶¶¶|___________|¶¶¶
                                                 _________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
 								""")
-
 
 			except:
 				print("\n--------------------------------------------------------Кракнувса-------------------------------------------------------\n")
