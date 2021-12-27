@@ -10,6 +10,7 @@ import random
 from reit import Reit
 from menu import menu
 from fuck import fuck
+from say import say
 
 while True:
 	try:
@@ -21,6 +22,17 @@ while True:
 					dateNtime = datetime.utcfromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
 					logMessage = "\n\n---\nFrom User: 'id%s'   From Chat: '%s'   Date'N'Time: '%s'\n '%s'\n---" % (event.message.from_id, event.chat_id ,dateNtime, event.message.text)
 					print(logMessage)
+
+					logsFile = open("logs.txt", "a")
+					logsFile.write(logMessage)
+					logsFile.close()
+
+					action = event.obj['message'].get('action')
+
+					if action['type'] == 'chat_kick_user':
+						sender(event.chat_id, 'Минус додик!')
+					elif action['type'] == 'chat_invite_user':
+						sender(event.chat_id, 'Здорова, ебать! Пиши бот меню, или сразу бот кок. Че мелочиться?')
 
 					if event.message.peer_id != event.message.from_id:
 						msg = event.message.text.lower()
@@ -37,8 +49,7 @@ while True:
 							    if dolbaeb['id'] == 182821666:
 								    sender(id, 'Здорова, Батя!))0)')
 							    else:
-							        sender(id, 'Иди нахуй, %s %s' %
-							               (dolbaeb['first_name'], dolbaeb['last_name']))
+							        sender(id, 'Иди нахуй, %s %s' % (dolbaeb['first_name'], dolbaeb['last_name']))
 
 							elif msg == 'бот меню':
 								sender(id, menu)
@@ -102,6 +113,9 @@ while True:
 							elif msg == 'бот хочу ебаться':
 								fuck(id, dolbaeb['id'], dolbaeb['first_name'], dolbaeb['last_name'])
 
+							elif msg[:9] == 'бот скажи':
+								say(id, msg[9:])
+
 							elif dolbaeb['id'] == 182821666 and msg == 'бот призываю тебя заебать всех нахуй':
 								sender(id, 'Пагнали наши городские!')
 								i = 1
@@ -143,7 +157,6 @@ while True:
                                                 _________¶¶¶|___________|¶¶¶
                                                 _________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
 								""")
-
 
 			except:
 				print("\n--------------------------------------------------------Кракнувса-------------------------------------------------------\n")
