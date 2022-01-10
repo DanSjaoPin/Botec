@@ -13,6 +13,15 @@ from cock import CockChange, CocksTop
 from roll import Roll
 from FaggotOfTheDay import FagsCreate, WhoIsFaggot
 FagsCreate()
+<<<<<<< HEAD
+=======
+from fap import fapContent
+import random
+from reit import Reit
+from menu import menu
+from fuck import fuck
+from say import say
+>>>>>>> c49988b36864e6536a1c20e2cf8b39cc793a9c3f
 
 while True:
 	try:
@@ -30,6 +39,16 @@ while True:
 					logsFile.write(logMessage)
 					logsFile.close()
 
+<<<<<<< HEAD
+=======
+					action = event.obj['message'].get('action')
+
+					if action['type'] == 'chat_kick_user':
+						sender(event.chat_id, 'Минус додик!')
+					elif action['type'] == 'chat_invite_user':
+						sender(event.chat_id, 'Здорова, ебать! Пиши бот меню, или сразу бот кок. Че мелочиться?')
+
+>>>>>>> c49988b36864e6536a1c20e2cf8b39cc793a9c3f
 					if event.message.peer_id != event.message.from_id:
 						msg = event.message.text.lower()
 						id = event.chat_id
@@ -42,11 +61,18 @@ while True:
 							msg = formatInput(msg)
 
 							if msg == 'бот':
+<<<<<<< HEAD
 								if dolbaeb['id'] == 182821666:
 									sender(id, 'Здорова, Батя!))0)')
 								else:
 									sender(id, 'Иди нахуй, %s %s' %
 										(dolbaeb['first_name'], dolbaeb['last_name']))
+=======
+							    if dolbaeb['id'] == 182821666:
+								    sender(id, 'Здорова, Батя!))0)')
+							    else:
+							        sender(id, 'Иди нахуй, %s %s' % (dolbaeb['first_name'], dolbaeb['last_name']))
+>>>>>>> c49988b36864e6536a1c20e2cf8b39cc793a9c3f
 
 							elif msg == 'бот меню':
 								sender(id, menu)
@@ -162,6 +188,10 @@ while True:
                                                 _________¶¶¶|___________|¶¶¶
                                                 _________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
 								""")
+<<<<<<< HEAD
+=======
+
+>>>>>>> c49988b36864e6536a1c20e2cf8b39cc793a9c3f
 			except:
 				print("\n--------------------------------------------------------Кракнувса-------------------------------------------------------\n")
 	except:
