@@ -1,4 +1,5 @@
 from pasta import pasta
+from anek import anek
 from say import say
 from fuck import fuck
 from menu import menu
@@ -13,28 +14,12 @@ from cock import CockChange, CocksTop
 from roll import Roll
 from FaggotOfTheDay import FagsCreate, WhoIsFaggot
 FagsCreate()
-from fap import fapContent
-import random
-from reit import Reit
-from menu import menu
-from fuck import fuck
-from say import say
 
 while True:
 	try:
 		for event in longpoll.listen():
 			try:
 				if event.type == VkBotEventType.MESSAGE_NEW:
-
-					ts = int(event.message.date)
-					dateNtime = datetime.utcfromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-					logMessage = "\n\n---\nFrom User: 'id%s'   From Chat: '%s'   Date'N'Time: '%s'\n '%s'\n---" % (
-						event.message.from_id, event.chat_id, dateNtime, event.message.text)
-					print(logMessage)
-
-					logsFile = open("logs.txt", "a")
-					logsFile.write(logMessage)
-					logsFile.close()
 
 					if event.message.peer_id != event.message.from_id:
 						msg = event.message.text.lower()
@@ -48,17 +33,11 @@ while True:
 							msg = formatInput(msg)
 
 							if msg == 'бот':
-
 								if dolbaeb['id'] == 182821666:
 									sender(id, 'Здорова, Батя!))0)')
 								else:
 									sender(id, 'Иди нахуй, %s %s' %
 										(dolbaeb['first_name'], dolbaeb['last_name']))
-
-								if dolbaeb['id'] == 182821666:
-									sender(id, 'Здорова, Батя!))0)')
-								else:
-									sender(id, 'Иди нахуй, %s %s' % (dolbaeb['first_name'], dolbaeb['last_name']))
 
 							elif msg == 'бот меню':
 								sender(id, menu)
@@ -111,6 +90,13 @@ while True:
 								try:
 									pastas = pasta()
 									sender(id, pastas)
+								except Exception as e:
+									print('Ошибка:\n', traceback.format_exc())
+								
+							elif msg == 'бот анек':
+								try:
+									ane = anek()
+									sender(id, ane)
 								except Exception as e:
 									print('Ошибка:\n', traceback.format_exc())
 
