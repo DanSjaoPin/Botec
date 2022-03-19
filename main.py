@@ -1,5 +1,5 @@
 from pasta import pasta
-from anek import anek
+from anek import *
 from say import say
 from fuck import fuck
 from menu import menu
@@ -13,6 +13,7 @@ from format import formatInput
 from cock import CockChange, CocksTop
 from roll import Roll
 from FaggotOfTheDay import FagsCreate, WhoIsFaggot
+from WhoIsMe import WhoIsMe
 FagsCreate()
 
 while True:
@@ -20,6 +21,13 @@ while True:
 		for event in longpoll.listen():
 			try:
 				if event.type == VkBotEventType.MESSAGE_NEW:
+
+					ts = int(event.message.date)
+					dateNtime = datetime.utcfromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+					logMessage = "\n\n---\nFrom User: 'id%s'   From Chat: '%s'   Date'N'Time: '%s'\n '%s'\n---" % (
+						event.message.from_id, event.chat_id, dateNtime, event.message.text)
+					print(logMessage)
+
 
 					if event.message.peer_id != event.message.from_id:
 						msg = event.message.text.lower()
@@ -37,7 +45,7 @@ while True:
 									sender(id, 'Здорова, Батя!))0)')
 								else:
 									sender(id, 'Иди нахуй, %s %s' %
-										(dolbaeb['first_name'], dolbaeb['last_name']))
+																		(dolbaeb['first_name'], dolbaeb['last_name']))
 
 							elif msg == 'бот меню':
 								sender(id, menu)
@@ -92,7 +100,7 @@ while True:
 									sender(id, pastas)
 								except Exception as e:
 									print('Ошибка:\n', traceback.format_exc())
-								
+
 							elif msg == 'бот анек':
 								try:
 									ane = anek()
@@ -100,9 +108,12 @@ while True:
 								except Exception as e:
 									print('Ошибка:\n', traceback.format_exc())
 
+							elif msg == 'бот данек':
+								sender(id, Danek())
+
 							elif msg == 'бот кок':
 								CockChange(dolbaeb['id'], dolbaeb['first_name'],
-								           dolbaeb['last_name'], id)
+										   dolbaeb['last_name'], id)
 
 							elif msg == 'бот топ коков':
 								CocksTop(id, dolbaeb['id'])
@@ -119,6 +130,10 @@ while True:
 							elif msg[:9] == 'бот скажи':
 								say(id, msg[9:])
 
+							elif msg == 'бот кто я':
+								sender(id, WhoIsMe(
+									dolbaeb['id'], dolbaeb['first_name'], dolbaeb['last_name']))
+
 							elif dolbaeb['id'] == 182821666 and msg == 'бот призываю тебя заебать всех нахуй':
 								sender(id, 'Пагнали наши городские!')
 								i = 1
@@ -130,35 +145,35 @@ while True:
 								sender(id, """Держи
 
 
-                                                _____________¶¶¶¶¶¶¶¶¶
-                                                _____________¶¶¶¶¶¶¶¶¶
-                                                _____________¶¶¶¶¶¶¶¶¶
-                                                _____________¶¶¶¶¶¶¶¶¶
-                                                _____________88888888
-                                                _____________¶¶¶¶¶¶¶¶¶
-                                                _____________¶¶¶¶¶¶¶¶¶
-                                                _____________¶¶¶¶¶¶¶¶¶
-                                                _____________¶¶¶¶¶¶¶¶¶
-                                                ____________¶¶¶¶¶¶¶¶¶¶¶
-                                                ___________¶¶¶¶¶¶¶¶¶¶¶¶¶
-                                                __________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
-                                                _________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
-                                                _________¶¶¶|___________|¶¶¶
-                                                _________¶¶¶|111111111|¶¶¶
-                                                _________¶¶¶|111111111|¶¶¶
-                                                _________¶¶¶|111111111|¶¶¶
-                                                _________¶¶¶|111111111|¶¶¶
-                                                _________¶¶¶|11Сваяк11|¶¶¶
-                                                _________¶¶¶|111111111|¶¶¶
-                                                _________¶¶¶|111111111|¶¶¶
-                                                _________¶¶¶|111111111|¶¶¶
-                                                _________¶¶¶|111111111|¶¶¶
-                                                _________¶¶¶|111111111|¶¶¶
-                                                _________¶¶¶|111111111|¶¶¶
-                                                _________¶¶¶|111111111|¶¶¶
-                                                _________¶¶¶|111111111|¶¶¶
-                                                _________¶¶¶|___________|¶¶¶
-                                                _________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
+												_____________¶¶¶¶¶¶¶¶¶
+												_____________¶¶¶¶¶¶¶¶¶
+												_____________¶¶¶¶¶¶¶¶¶
+												_____________¶¶¶¶¶¶¶¶¶
+												_____________88888888
+												_____________¶¶¶¶¶¶¶¶¶
+												_____________¶¶¶¶¶¶¶¶¶
+												_____________¶¶¶¶¶¶¶¶¶
+												_____________¶¶¶¶¶¶¶¶¶
+												____________¶¶¶¶¶¶¶¶¶¶¶
+												___________¶¶¶¶¶¶¶¶¶¶¶¶¶
+												__________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
+												_________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
+												_________¶¶¶|___________|¶¶¶
+												_________¶¶¶|111111111|¶¶¶
+												_________¶¶¶|111111111|¶¶¶
+												_________¶¶¶|111111111|¶¶¶
+												_________¶¶¶|111111111|¶¶¶
+												_________¶¶¶|11Сваяк11|¶¶¶
+												_________¶¶¶|111111111|¶¶¶
+												_________¶¶¶|111111111|¶¶¶
+												_________¶¶¶|111111111|¶¶¶
+												_________¶¶¶|111111111|¶¶¶
+												_________¶¶¶|111111111|¶¶¶
+												_________¶¶¶|111111111|¶¶¶
+												_________¶¶¶|111111111|¶¶¶
+												_________¶¶¶|111111111|¶¶¶
+												_________¶¶¶|___________|¶¶¶
+												_________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
 								""")
 			except:
 				print("\n--------------------------------------------------------Кракнувса-------------------------------------------------------\n")
