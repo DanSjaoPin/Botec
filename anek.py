@@ -1,5 +1,8 @@
+import imp
 from bs4 import BeautifulSoup
 import requests
+import random
+from danek import danek
 
 
 def anek():
@@ -11,3 +14,7 @@ def anek():
 	anek = soup.find('p')
 
 	return(anek.text)
+
+def Danek():
+	i = random.randrange(len(danek))
+	return danek[i]

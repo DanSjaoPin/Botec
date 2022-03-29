@@ -14,6 +14,7 @@ from cock import CockChange, CocksTop
 from roll import Roll
 from FaggotOfTheDay import FagsCreate, WhoIsFaggot
 from WhoIsMe import WhoIsMe
+from Weather import GetWeather
 FagsCreate()
 
 while True:
@@ -47,6 +48,14 @@ while True:
 									sender(id, 'Иди нахуй, %s %s' %
 																		(dolbaeb['first_name'], dolbaeb['last_name']))
 
+							elif msg.startswith('кай') or msg.startswith('s g d'):
+								msg_id = event.message.conversation_message_id
+								vk.messages.delete(peer_id=2000000000 + id,
+                                                                    delete_for_all=1, cmids=msg_id)
+
+							elif event.message.from_id == -170393012:
+								sender(id, 'А Кай педик ебанный.))0)')
+							
 							elif msg == 'бот меню':
 								sender(id, menu)
 
@@ -140,6 +149,9 @@ while True:
 								while i <= 666:
 									sender(id, '@all %d/666' % i)
 									i += 1
+
+							elif msg.startswith('бот погода'):
+								sender(id, GetWeather(msg[11:]))
 
 							elif msg == 'бот сидеть':
 								sender(id, """Держи
