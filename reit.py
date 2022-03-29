@@ -2,7 +2,7 @@ import sqlite3
 from format import format
 
 
-def Reit(IDs, vkid):
+def Reit(IDs):
 	try:
 		base = sqlite3.connect('CocksBase.bd')
 	except:
@@ -14,9 +14,9 @@ def Reit(IDs, vkid):
 		count = cockBD.execute("SELECT count(user_id) FROM cock")
 		for user in users:
 			if format(user) == str(IDs):
-				return 'Твое место в абсолютном рейтинге: %s'
+				return f'Твое место в абсолютном рейтинге: {i} из {count}'
 			else:
-				i = i + 1
+				i += 1
 
 	except:
 		print("\n--------------------------------------------------------Кракнувса рейтинг-------------------------------------------------------\n")
