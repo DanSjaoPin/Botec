@@ -28,5 +28,5 @@ def fuck(chat_id, degenerat_id, name, sname):
     elif str(ID) == '162958234':
         CT = "%s %s попытался выебать Славика, но в итоге схватил от него за щеку" % (name, sname)
 
-    sender(chat_id, CT)
+    return CT
 
