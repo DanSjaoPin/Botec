@@ -2,7 +2,7 @@ import sqlite3
 from datetime import date
 import random
 from CocksBase import CockUpdate
-from sender import vk
+from sender import sender, vk
 from format import format
 
 base = sqlite3.connect('CocksBase.bd')
@@ -29,26 +29,26 @@ def CockChange(dolbaebID, dolbaebF, dolbaebN, id):
 
 		if chance > 0 and chance <= 40:
 			plus = random.randrange(10)
-			return 'Кок %s %s вырос на %d см!' % (dolbaebF, dolbaebN, plus)
+			sender(id, 'Кок %s %s вырос на %d см!' % (dolbaebF, dolbaebN, plus))
 
 		elif chance > 40 and chance <= 70:
 			plus = random.randrange(10, 15)
-			return 'Кок %s %s вырос на %d см!' % (dolbaebF, dolbaebN, plus)
+			sender(id, 'Кок %s %s вырос на %d см!' % (dolbaebF, dolbaebN, plus))
 
 		elif chance > 70 and chance <= 78:
 			plus = random.randrange(15, 20)
-			return 'Кок %s %s вырос на %d см!' % (dolbaebF, dolbaebN, plus)
+			sender(id, 'Кок %s %s вырос на %d см!' % (dolbaebF, dolbaebN, plus))
 
 		elif chance > 78 and chance <= 97:
 			plus = random.randrange(-25, 0)
-			return 'Кок %s %s объевреился на %d см!\nСаси' % (dolbaebF, dolbaebN, plus)
+			sender(id, 'Кок %s %s объевреился на %d см!\nСаси' % (dolbaebF, dolbaebN, plus))
 
 		elif chance > 97 and chance <= 99:
-			return 'Кок *%s %s вырос в 2 раза!' % (dolbaebF, dolbaebN)
+			sender(id, 'Кок *%s %s вырос в 2 раза!' % (dolbaebF, dolbaebN))
 			plus = 666
 
 		elif chance == 100:
-			return 'Кок %s %s отвалился!\nЛох))0)' % (dolbaebF, dolbaebN)
+			sender(id, 'Кок %s %s отвалился!\nЛох))0)' % (dolbaebF, dolbaebN))
 			plus = 1488
 
 		CockUpdate(dolbaebID, dolbaebN, dolbaebF, id, plus)
