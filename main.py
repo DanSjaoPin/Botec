@@ -15,6 +15,8 @@ from roll import Roll
 from FaggotOfTheDay import FagsCreate, WhoIsFaggot
 from WhoIsMe import WhoIsMe
 from Weather import GetWeather
+from POSLAT import *
+from Pics import ChoosePicType
 FagsCreate()
 
 while True:
@@ -46,17 +48,20 @@ while True:
 								else:
 									sender(id, 'Иди нахуй, %s %s' %
 										(dolbaeb['first_name'], dolbaeb['last_name']))
+							
+							elif msg in POSLAT:
+								sender(id, 'Иди нахуй' + OTVET[random.randint(0, len(OTVET)-1)])
 
 							elif msg == 'бот меню':
 								sender(id, menu)
 
-							elif msg.startswith('кай') or msg.startswith('s g d'):
-								msg_id = event.message.conversation_message_id
-								vk.messages.delete(peer_id=2000000000 + id,
-												delete_for_all=1, cmids=msg_id)
+							#elif msg.startswith('кай') or msg.startswith('s g d'):
+							#	msg_id = event.message.conversation_message_id
+							#	vk.messages.delete(peer_id=2000000000 + id,
+							#					delete_for_all=1, cmids=msg_id)
 								
-							elif event.message.from_id == -170393012:
-								sender(id, 'А Кай педик ебанный.))0)')
+							#elif event.message.from_id == -170393012:
+							#	sender(id, 'А Кай педик ебанный.))0)')
 
 							elif msg == 'я':
 								sender(id, 'Головка от хуя')
@@ -114,6 +119,9 @@ while True:
 
 							elif msg == 'бот данек':
 								sender(id, Danek())
+							
+							elif msg.startswith('бот пикча'):
+								ChoosePicType(id, msg)
 
 							elif msg == 'бот кок':
 								sender(id, CockChange(dolbaeb['id'], dolbaeb['first_name'],
@@ -123,10 +131,10 @@ while True:
 								sender(id, CocksTop(id, dolbaeb['id']))
 
 							elif msg == 'бот пидор дня':
-								sender(id, WhoIsFaggot(id, dolbaeb['id']))
+								WhoIsFaggot(id, dolbaeb['id'])
 
 							elif msg == 'бот абсолют':
-								sender(id, Reit(dolbaeb['id'], id))
+								sender(id, Reit(dolbaeb['id']))
 
 							elif msg == 'бот хочу ебаться':
 								sender(id, fuck(id, dolbaeb['id'], dolbaeb['first_name'], dolbaeb['last_name']))
